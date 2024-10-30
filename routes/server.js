@@ -1,15 +1,17 @@
+// app.js or server.js
 const express = require('express');
+const mongoose = require('mongoose');
+const config = require('./config/config');
+
 const app = express();
-const routes = require('./routes'); // Import the routes from the routes folder
 
-// Middleware to parse JSON bodies
-app.use(express.json());
+// Connect to MongoDB
+mongoose.connect(config.mongodbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
 
-// Use the defined routes
-app.use('/', routes);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// Start the server
+app.listen(config.port, () => {
+    console.log(`Server is running on port ${config.port}`);
 });
 
