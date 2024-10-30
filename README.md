@@ -1,7 +1,3 @@
-Certainly! Here is a clean, ready-to-copy version of your `README.md` file.
-
----
-
 ```markdown
 # InteraLearn Backend API
 
